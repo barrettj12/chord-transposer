@@ -62,9 +62,25 @@ export class ChordString {
   
   static transpose(cs, semitones) {
     // Have this.rawNotes() now
-//    let rawNotes = cs.chords.map( x => x[1] );
+/*     let rn = this.rawNotes();
+    let notes = [];
+
+    for (const note of rn) {
+      let newNote = Note.transpose(note, semitones)
+      notes.push([cs., newNote]);
+    } */
+
+    return new ChordString(
+      cs.base,
+      cs.chords.map( x => [
+        x[0],
+        Note.transpose( x[1], semitones )
+      ] )
+    );
     
-    // Want to minimise total number of accidentals
+    // Want to minimise |totalSharpness|
+
+    // FINISH THIS
   }
   
   // Do this in a smarter way

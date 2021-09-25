@@ -47,7 +47,7 @@ export class Note {
                         [semitones];
     
     return new Note(
-      newLetter, // shift?
+      newLetter,
       note.sharpness + sharpShift
     );
   }

@@ -10,6 +10,18 @@ import { Note } from "./Note.js";
 import { ChordString } from "./ChordString.js";
 
 
+// Main method for transposing a chord sequence by a given amount
+function transpose(input, amount) {
+  return ChordString.transpose(
+    ChordString.parse(input),
+    amount
+  );
+}
+
+
+
+// Testing
+
 for (const char of NOTE_NAMES) {
   let noteC = new Note(char, 0);
   for (let i = 0; i < 12; i++) {
