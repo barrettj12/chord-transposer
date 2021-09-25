@@ -11,14 +11,15 @@ import { ChordString } from "./ChordString.js";
 
 
 // Main method for transposing a chord sequence by a given amount
-function transpose(input, amount) {
-  return ChordString.transpose(
+export function transpose(input, amount) {
+/*   return ChordString.transpose(
     ChordString.parse(input),
     amount
-  );
+  ).toString(); */
+  return "this is a test";
 }
 
-
+console.log(transpose("A B C", 2));
 
 // Testing
 

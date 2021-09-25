@@ -189,4 +189,8 @@ export class ChordString {
       notes.push(newBase.length, nextNote);
     }*/
   }
+
+  toString(){
+    return "foo";
+  }
 }

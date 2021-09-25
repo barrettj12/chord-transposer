@@ -8,8 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Chord Transposer</title>
-    <!––link rel="stylesheet" href="main.css"-->
-    <base href="https://barrettj12.github.io/chord-transposer/" target="_blank">
+    <!--   <link rel="stylesheet" href="main.css">   -->
+    <base href="../" target="_blank">
+
+    <!-- JavaScript imports -->
+    <script type="application/javascript" src="src/Main.js"></script>
   </head>
 
   <body>
@@ -19,9 +22,28 @@
     
     <main>
       <div>
-        <textarea rows=10>wow</textarea>
-        <textarea rows=10 readonly>no way</textarea>
+        <textarea
+          id="input"
+          oninput="processChords()"
+          placeholder="Type your chords here!"
+          rows=10
+        ></textarea>
+        <textarea id="output" readonly rows=10>no way</textarea>
       </div>
+      
+      <!-- Textarea script -->
+      <script>
+//        import { transpose } from "src/Main.js";
+      
+        // Updates the textarea
+        function processChords() {
+          let input = document.getElementById("input");
+          let output = document.getElementById("output");
+      
+//          output.value = input.value;
+          output.value = transpose("A B C", 2);
+        }
+      </script> 
     </main>
 
     <footer>
