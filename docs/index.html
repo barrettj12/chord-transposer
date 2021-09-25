@@ -12,7 +12,7 @@
     <base href="../" target="_blank">
 
     <!-- JavaScript imports -->
-    <script type="application/javascript" src="src/Main.js"></script>
+    <script type="module" src="/src/Main.js"></script>
   </head>
 
   <body>
@@ -24,7 +24,6 @@
       <div>
         <textarea
           id="input"
-          oninput="processChords()"
           placeholder="Type your chords here!"
           rows=10
         ></textarea>
@@ -32,17 +31,19 @@
       </div>
       
       <!-- Textarea script -->
-      <script>
-//        import { transpose } from "src/Main.js";
+      <script type="module">
+        import { transpose } from "/src/Main.js";
+
+        let input = document.getElementById("input");
+        let output = document.getElementById("output");
       
         // Updates the textarea
         function processChords() {
-          let input = document.getElementById("input");
-          let output = document.getElementById("output");
-      
 //          output.value = input.value;
-          output.value = transpose("A B C", 2);
+          output.value = transpose(input.value, 2);
         }
+
+        input.addEventListener("input", processChords);
       </script> 
     </main>
 
