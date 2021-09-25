@@ -195,10 +195,11 @@ export class ChordString {
     let posBase = 0;
     let posNote = 0;
 
-    while (posBase < this.base.length) {
-      console.log(output);
+    while (posBase < this.base.length ||
+           posNote < this.chords.length) {
+//      console.log(output);
       if (posNote < this.chords.length &&
-        this.chords[posNote][0] == posBase) {
+          this.chords[posNote][0] == posBase) {
         output += this.chords[posNote][1].toString();
         posNote++;
       }
