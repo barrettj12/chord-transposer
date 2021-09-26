@@ -18,3 +18,6 @@ export const SHARP_SHIFT = [
   [0, -1, 0, -1, 0, 0, -1, 0, -1, 0, -1, 0],
   [0, -1, 0, -1, 0, 0, -1, 0, -1, 0,  0, 1],
 ]
+
+// Steps between notes in order (A->B, B->C, ...)
+export const STEPS = [2,1,2,2,1,2,2];
