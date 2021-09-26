@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Chord Transposer</title>
-    <!--   <link rel="stylesheet" href="main.css">   -->
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="custom.css">
     <base href="../" target="_blank">
 
     <!-- JavaScript imports -->
@@ -21,13 +22,20 @@
     </header>
     
     <main>
-      <div>
+      <div id="textarea-container">
         <textarea
           id="input"
-          placeholder="Type your chords here!"
+          placeholder="Type your chords here..."
           rows=10
+          cols=30
         ></textarea>
-        <textarea id="output" readonly rows=10>no way</textarea>
+        <textarea
+          id="output"
+          placeholder="...and the transposed chords will appear here."
+          rows=10
+          cols=30
+          readonly
+        ></textarea>
       </div>
       
       <!-- Textarea script -->
