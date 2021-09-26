@@ -44,7 +44,7 @@ export class Note {
     // Calculate sharp shift from array - normally 0
     let sharpShift = SHARP_SHIFT
                         [this.letterCode(note.letter)]
-                        [semitones];
+                        [mod(semitones,12)];
     
     return new Note(
       newLetter,
