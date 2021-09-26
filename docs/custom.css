@@ -35,6 +35,7 @@ hr {
 p {
   font-family: Garamond, serif;
   font-size: 110%;
-  line-height: 60%;
+  line-height: 120%;
+  margin: 7px 0px;
   text-align: center;
 }

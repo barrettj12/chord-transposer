@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="Put your chords in a different key.">
@@ -44,6 +44,14 @@
         <input id="semitones" type=number value=0 readonly>
         <button id="plus">+</button>
       </div>
+
+      <hr>
+
+      <section id="about">
+        <p>This simple tool transposes your chords, melodies or note sequences into another key. Unlike many other transposers, it obeys the laws of music theory by choosing the correct <a href="https://en.wikipedia.org/wiki/Enharmonic">enharmonic</a> (e.g. using Bb instead of A# in the key of F major).</p>
+        <p>It can deal with modified chords (e.g. m7, add2), slash chords, and formatting data such as titles, colons, dashes, brackets, etc. Click <a id="exlink" href="#">here</a> for an example.</p>
+        <p><b>Note:</b> you can write annotations such as "verse:", "chorus:" and song titles, but it is suggested you write these <b>all in lowercase,</b> so they are not confused for chords.</p>
+      </section>
       
       <!-- Textarea script -->
       <script type="module">
@@ -54,10 +62,12 @@
         let plus = document.getElementById("plus");
         let minus = document.getElementById("minus");
         let semitones = document.getElementById("semitones");
+        let exlink = document.getElementById("exlink");
 
         input.addEventListener("input", processChords);
         plus.addEventListener("click", tuneUp);
         minus.addEventListener("click", tuneDown);
+        exlink.onclick = example;
       
         // Updates the textarea
         function processChords() {
@@ -72,6 +82,13 @@
         function tuneDown() {
           semitones.value = (parseInt(semitones.value) - 1).toString();
           processChords();
+        }
+
+        function example() {
+          input.value = "A B C D";
+          semitones.value = "-2";
+          processChords();
+          return false;
         }
       </script> 
     </main>
