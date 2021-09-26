@@ -5,8 +5,8 @@
  */
 
 
-import { NOTE_NAMES } from "./Constants.js";
-import { Note } from "./Note.js";
+/*import { NOTE_NAMES } from "./Constants.js";
+import { Note } from "./Note.js";*/
 import { ChordString } from "./ChordString.js";
 
 
@@ -16,11 +16,14 @@ export function transpose(input, amount) {
     ChordString.parse(input),
     amount
   )
-  console.log(newCS);
+  /* 
+  console.log("transposed thing is",newCS);
+  for (const nt of newCS.chords){console.log(nt);} */
   return newCS.toString();
 }
 
-/* console.log(transpose("A B C", 2));
+/*console.log(transpose("A B C", -2));
+
 
 // Testing
 
