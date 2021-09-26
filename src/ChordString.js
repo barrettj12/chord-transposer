@@ -70,17 +70,61 @@ export class ChordString {
       notes.push([cs., newNote]);
     } */
 
-    return new ChordString(
+    let csFirst = new ChordString(
       cs.base,
       cs.chords.map( x => [
         x[0],
         Note.transpose( x[1], semitones )
       ] )
     );
+//    console.log("csFirst",csFirst.toString());
+//    console.log("total sharpness",csFirst.totSharpness());
     
+    // Find best enharmonic
     // Want to minimise |totalSharpness|
+    let csUp, csDown;
+    
+    if (csFirst.totSharpness() == 0){
+      return csFirst;
+    }
+    else if (csFirst.totSharpness() > 0){
+      csDown = csFirst;
 
-    // FINISH THIS
+      do {
+        csUp = csDown;
+//        console.log("csUp",csUp.toString());
+//        console.log("total sharpness",csUp.totSharpness());
+    
+        csDown = new ChordString(
+          csUp.base,
+          csUp.chords.map( x => [
+            x[0],
+            Note.enharmonicDown( x[1] )
+          ] )
+        );
+//        console.log("csDown",csDown.toString());
+//        console.log("total sharpness",csDown.totSharpness());
+      }
+      while (csDown.totSharpness() > 0)
+
+    }
+    else if (csFirst.totSharpness() < 0){
+      csUp = csFirst;
+
+      do {
+        csDown = csUp;
+        csUp = new ChordString(
+          csDown.base,
+          csDown.chords.map( x => [
+            x[0],
+            Note.enharmonicUp( x[1] )
+          ] )
+        );
+      }
+      while (csUp.totSharpness() < 0)
+    }
+
+    return (Math.abs(csUp.totSharpness()) <= Math.abs(csDown.totSharpness()) ? csUp : csDown);
   }
   
   // Do this in a smarter way

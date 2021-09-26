@@ -6,7 +6,7 @@
  */
 
 
-import { NOTE_NAMES, SHARP_SHIFT } from "./Constants.js";
+import { NOTE_NAMES, SHARP_SHIFT, STEPS } from "./Constants.js";
 import { mod } from "./Utilities.js";
 
 
@@ -63,6 +63,25 @@ export class Note {
   static letterCode(letter) {
     return letter.charCodeAt(0) - 65;
   }
+
+  // Given a note, returns the enharmonic with more sharps
+  //   e.g.  Eb -> D#,  C -> B# 
+  static enharmonicUp(note) {
+    let newLetter = this.letterShift(note.letter, -1);
+    return new Note(
+      newLetter,
+      note.sharpness + STEPS[this.letterCode(newLetter)]
+    );
+  }
+
+  // Given a note, returns the enharmonic with more flats
+  //   e.g.  D# -> Eb,  B -> Cb 
+  static enharmonicDown(note) {
+    return new Note(
+      this.letterShift(note.letter, 1),
+      note.sharpness - STEPS[this.letterCode(note.letter)]
+    );
+  }
   
   // Works out the num of semitones between two notes
   // e.g. distBtwn(A#, C) = 2
@@ -78,3 +97,6 @@ export class Note {
     // --- FINISH THIS ---
   }
 }
+
+
+//console.log(Note.enharmonicDown(new Note('A',1)));
