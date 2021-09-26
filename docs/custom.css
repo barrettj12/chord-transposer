@@ -1,0 +1,35 @@
+h1 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: 250%;
+  font-weight: 100;
+}
+
+body {
+  margin: 0px 10px 10px;
+}
+
+#textarea-container {
+  text-align: center;
+}
+
+textarea {
+  font-family: monospace;
+  max-height: 400px;
+  min-height: 10ch;
+  max-width: 400px;
+  min-width: 30ch;
+  resize: none;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid lightgray;
+}
+
+p {
+  font-family: Garamond, serif;
+  font-size: 110%;
+  line-height: 60%;
+  text-align: center;
+}
