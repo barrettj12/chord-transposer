@@ -22,6 +22,11 @@ textarea {
   resize: none;
 }
 
+#semitones { 
+  text-align: center;
+  width: 60px;
+}
+
 hr {
   border: 0;
   border-top: 1px solid lightgray;

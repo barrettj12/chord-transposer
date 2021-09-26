@@ -37,6 +37,13 @@
           readonly
         ></textarea>
       </div>
+
+      <div id="semitone-button">
+        <p>Transpose by:</p>
+        <button id="minus">−</button>
+        <input id="semitones" type=number value=0 readonly>
+        <button id="plus">+</button>
+      </div>
       
       <!-- Textarea script -->
       <script type="module">
@@ -44,14 +51,28 @@
 
         let input = document.getElementById("input");
         let output = document.getElementById("output");
+        let plus = document.getElementById("plus");
+        let minus = document.getElementById("minus");
+        let semitones = document.getElementById("semitones");
+
+        input.addEventListener("input", processChords);
+        plus.addEventListener("click", tuneUp);
+        minus.addEventListener("click", tuneDown);
       
         // Updates the textarea
         function processChords() {
-//          output.value = input.value;
-          output.value = transpose(input.value, 2);
+          output.value = transpose(input.value, parseInt(semitones.value));
         }
 
-        input.addEventListener("input", processChords);
+        function tuneUp() {
+          semitones.value = (parseInt(semitones.value) + 1).toString();
+          processChords();
+        }
+
+        function tuneDown() {
+          semitones.value = (parseInt(semitones.value) - 1).toString();
+          processChords();
+        }
       </script> 
     </main>
 
