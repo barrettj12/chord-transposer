@@ -122,7 +122,7 @@ export class ChordString {
     createNote();
     
     const cs = new ChordString(newBase, notes);
-    console.log("returning", cs);
+//    console.log("returning", cs);
     return cs;
       
     // Creates a Note if there is one in the buffer
