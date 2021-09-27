@@ -4,6 +4,6 @@ The user inputs plain text into a textbox, containing their chords and possibly 
 The chords are extracted from the plain text, transposed into the desired key, then outputted
 on the webpage.
 
-You can try it out [here](https://barrettj12.github.io/chord-transposer/).
+You can try it out <a href="https://barrettj12.github.io/chord-transposer/" target="_blank">here</a>.
 
 Contributors: [@barrettj12](https://github.com/barrettj12/)
