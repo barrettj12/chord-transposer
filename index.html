@@ -38,11 +38,15 @@
         ></textarea>
       </div>
 
-      <div id="semitone-button">
-        <p>Transpose by:</p>
-        <button id="minus">−</button>
-        <input id="semitones" value=0 readonly>
-        <button id="plus">+</button>
+      <div id="controls">
+        <button id="reset">Reset</button>
+        
+        <span id="semitone-button">
+          <p>Transpose by:</p>
+          <button id="minus">−</button>
+          <input id="semitones" value=0 readonly>
+          <button id="plus">+</button>
+        </span>
       </div>
 
       <hr>
@@ -59,12 +63,14 @@
 
         let input = document.getElementById("input");
         let output = document.getElementById("output");
+        let reset = document.getElementById("reset");
         let plus = document.getElementById("plus");
         let minus = document.getElementById("minus");
         let semitones = document.getElementById("semitones");
         let exlink = document.getElementById("exlink");
 
         input.addEventListener("input", processChords);
+        reset.addEventListener("click", resetAll);
         plus.addEventListener("click", tuneUp);
         minus.addEventListener("click", tuneDown);
         exlink.onclick = example;
@@ -72,6 +78,12 @@
         // Updates the textarea
         function processChords() {
           output.value = transpose(input.value, parseInt(semitones.value));
+        }
+
+        function resetAll() {
+          input.value = "";
+          output.value = "";
+          semitones.value = "0";
         }
 
         function tuneUp() {

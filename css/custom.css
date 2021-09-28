@@ -22,9 +22,13 @@ textarea {
   resize: none;
 }
 
-#semitone-button {
+#controls {
   text-align: center;
   margin: 5px 0px 10px;
+}
+
+#controls span {
+  margin-left: 40px;
 }
 
 #semitone-button p {
