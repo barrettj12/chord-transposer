@@ -27,13 +27,13 @@
           id="input"
           placeholder="Type your chords here..."
           rows=10
-          cols=30
+          cols=40
         ></textarea>
         <textarea
           id="output"
           placeholder="...and the transposed chords will appear here."
           rows=10
-          cols=30
+          cols=40
           readonly
         ></textarea>
       </div>
@@ -85,8 +85,27 @@
         }
 
         function example() {
-          input.value = "A B C D";
-          semitones.value = "-2";
+          input.value = 
+/*               "stevie wonder - isn't she lovely\n"
+            + "\n"
+            + "C#m9 - C#m6/9 - A/B - E    (x2)\n"
+            + "\n"
+            + "Amaj9 - G#aug7 - C#m9 - C#m6/9\n"
+            + "A/B - A/B - E - E - (G#7)"; */
+              "elton john - bennie and the jets\n"
+            + "\n"
+            + "riff (staccato):   Gmaj7 - Fmaj7\n"
+            + "\n"
+            + "verse:\n"
+            + "Am7        D7\n"
+            + "hey kids, shake it loose together\n"
+            + "     Gmaj7\n"
+            + "the spotlight's hitting something\n"
+            + "            G#o7\n"
+            + "that's been known to change the weather\n"
+            + "\n"
+            + "...";
+          semitones.value = "-3";
           processChords();
           return false;
         }
