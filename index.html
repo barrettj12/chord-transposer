@@ -26,13 +26,13 @@
         <textarea
           id="input"
           placeholder="Type your chords here..."
-          rows=10
+          rows=12
           cols=40
         ></textarea>
         <textarea
           id="output"
           placeholder="...and the transposed chords will appear here."
-          rows=10
+          rows=12
           cols=40
           readonly
         ></textarea>
@@ -49,7 +49,7 @@
 
       <section id="about">
         <p>This simple tool transposes your chords, melodies or note sequences into another key. Unlike many other transposers, it obeys the laws of music theory by choosing the correct <a href="https://en.wikipedia.org/wiki/Enharmonic">enharmonic</a> (e.g. using Bb instead of A# in the key of F major).</p>
-        <p>It can deal with modified chords (e.g. m7, add2), slash chords, and formatting data such as titles, colons, dashes, brackets, etc. Click <a id="exlink" href="#">here</a> for an example.</p>
+        <p>It can deal with modified chords (e.g. m7, add2), slash chords, and formatting data such as titles, colons, dashes, brackets, etc. Click <a id="exlink" href="" target="_self">here</a> for an example.</p>
         <p><b>Note:</b> you can write annotations such as "verse:", "chorus:", song titles and lyrics, but it is suggested you write these <b>all in lowercase,</b> so they are not confused for chords.</p>
       </section>
       
@@ -103,7 +103,6 @@
             + "the spotlight's hitting something\n"
             + "            G#o7\n"
             + "that's been known to change the weather\n"
-            + "\n"
             + "...";
           semitones.value = "-3";
           processChords();

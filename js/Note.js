@@ -6,7 +6,7 @@
  */
 
 
-const NOTE_NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+export const NOTE_NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
 // Sharp shifts for transposing
 const SHARP_SHIFT = [
