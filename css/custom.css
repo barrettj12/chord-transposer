@@ -16,15 +16,27 @@ body {
 textarea {
   font-family: monospace;
   max-height: 400px;
-  min-height: 10ch;
+  min-height: 12ch;
   max-width: 400px;
-  min-width: 30ch;
+  min-width: 36ch;
   resize: none;
+}
+
+#semitone-button {
+  text-align: center;
+  margin: 5px 0px 10px;
+}
+
+#semitone-button p {
+  display: inline;
+  margin: 10px;
 }
 
 #semitones { 
   text-align: center;
-  width: 60px;
+  width: 3.5ch;
+  padding: 1px;
+  /* margin: 0px; */
 }
 
 hr {
