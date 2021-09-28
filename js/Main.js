@@ -5,8 +5,6 @@
  */
 
 
-/*import { NOTE_NAMES } from "./Constants.js";
-import { Note } from "./Note.js";*/
 import { ChordString } from "./ChordString.js";
 
 

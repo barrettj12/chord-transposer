@@ -6,8 +6,9 @@
  */
 
 
-import { NOTE_NAMES, SYMBOLS } from "./Constants.js";
-import { Note } from "./Note.js";
+import { NOTE_NAMES, Note } from "./Note.js";
+
+const SYMBOLS = ['#', 'b'];
 
 
 export class ChordString {

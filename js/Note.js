@@ -6,8 +6,21 @@
  */
 
 
-import { NOTE_NAMES, SHARP_SHIFT, STEPS } from "./Constants.js";
-import { mod } from "./Utilities.js";
+const NOTE_NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+// Sharp shifts for transposing
+const SHARP_SHIFT = [
+  [0, -1, 0,  0, 1, 0, -1, 0,  0, 1,  0, 1],
+  [0,  0, 1,  0, 1, 0,  0, 1,  0, 1,  0, 1],
+  [0, -1, 0, -1, 0, 0, -1, 0, -1, 0, -1, 0],
+  [0, -1, 0,  0, 1, 0, -1, 0, -1, 0,  0, 1],
+  [0,  0, 1,  0, 1, 0, -1, 0,  0, 1,  0, 1],
+  [0, -1, 0, -1, 0, 0, -1, 0, -1, 0, -1, 0],
+  [0, -1, 0, -1, 0, 0, -1, 0, -1, 0,  0, 1],
+]
+
+// Steps between notes in order (A->B, B->C, ...)
+const STEPS = [2,1,2,2,1,2,2];
 
 
 export class Note {
@@ -99,4 +112,8 @@ export class Note {
 }
 
 
-//console.log(Note.enharmonicDown(new Note('A',1)));
+// Mathematically correct modulo function
+function mod(x, y) {
+  let init = x % y;
+  return (init >= 0 ? init : init + y);
+}
