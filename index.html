@@ -1,3 +1,12 @@
+<!--
+  Chord Transposer
+    https://github.com/barrettj12/chord-transposer
+  Author: Jordan Barrett (@barrettj12)
+    https://github.com/barrettj12
+
+  Main HTML file for web app
+-->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -59,8 +68,10 @@
       
       <!-- Textarea script -->
       <script type="module">
+        // Import JS backend
         import { transpose } from "./js/Main.js";
 
+        // Get interactive elements on the page
         let input = document.getElementById("input");
         let output = document.getElementById("output");
         let reset = document.getElementById("reset");
@@ -69,6 +80,7 @@
         let semitones = document.getElementById("semitones");
         let exlink = document.getElementById("exlink");
 
+        // Add event listeners
         input.addEventListener("input", processChords);
         reset.addEventListener("click", resetAll);
         plus.addEventListener("click", tuneUp);

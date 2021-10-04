@@ -1,7 +1,9 @@
 /*   Chord Transposer
- *   Author: Jordan Barrett
+ *     https://github.com/barrettj12/chord-transposer
+ *   Author: Jordan Barrett (@barrettj12)
+ *     https://github.com/barrettj12
  *
- *   Main file  
+ *   Main JS file  
  */
 
 
@@ -14,16 +16,17 @@ export function transpose(input, amount) {
     ChordString.parse(input),
     amount
   )
-  /* 
-  console.log("transposed thing is",newCS);
-  for (const nt of newCS.chords){console.log(nt);} */
+  
   return newCS.toString();
 }
 
+
+
+
+// Testing - move this to new file
+
 /*console.log(transpose("A B C", -2));
 
-
-// Testing
 
 for (const char of NOTE_NAMES) {
   let noteC = new Note(char, 0);
