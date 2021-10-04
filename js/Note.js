@@ -1,5 +1,7 @@
 /*   Chord Transposer
+ *     https://github.com/barrettj12/chord-transposer
  *   Author: Jordan Barrett (@barrettj12)
+ *     https://github.com/barrettj12
  *
  *   The Note class
  *   Each instance represents a single musical note
@@ -66,9 +68,6 @@ export class Note {
   }
   
   static letterShift(letter, num) {
-//    let origCode = letter.charCodeAt(0);
-//    let intrCode = ( this.letterCode(letter) + num ) % 7
-//    let newCode = ( intrCode >= 0 ? intrCode : intrCode + 7 );
     return NOTE_NAMES[mod(this.letterCode(letter)+num, 7)];
   }
   
@@ -94,20 +93,6 @@ export class Note {
       this.letterShift(note.letter, 1),
       note.sharpness - STEPS[this.letterCode(note.letter)]
     );
-  }
-  
-  // Works out the num of semitones between two notes
-  // e.g. distBtwn(A#, C) = 2
-  //      distBtwn(D, B) = -3
-  // Returns integer between -5 and 6 (inclusive)
-  static distBtwn(note1, note2) {
-    // Workout dist between letters first
-    let letter1 = note1.letter;
-    let letter2 = note2.letter;
-    
-    // Ensure correct range
-    
-    // --- FINISH THIS ---
   }
 }
 
