@@ -1,5 +1,11 @@
-//const Note = require('../js/Note.js')
-import { restElement } from "@babel/types";
+/*   Chord Transposer
+ *     https://github.com/barrettj12/chord-transposer
+ *   Author: Jordan Barrett (@barrettj12)
+ *     https://github.com/barrettj12
+ *
+ *   Testing for the Note class  
+ */
+
 import { Note } from "../js/Note.js";
 
 
@@ -86,10 +92,3 @@ function prepin(inputs, outputs) {
 
   return res
 }
-/*test('note.toString()', () => {
-  expect(A.toString()).toBe('A')
-  expect(Bb.toString()).toBe('Bb')
-  expect(Cs.toString()).toBe('C#')
-  expect(Dss.toString()).toBe('D##')
-  expect(Fbb.toString()).toBe('Fbb')
-})*/
