@@ -2,8 +2,6 @@
 
 `chord-transposer` is a webpage which allows the user to transpose a given sequence of chords and/or notes into a different key. The actual logic is written entirely in JavaScript, while the webpage is (of course) written in HTML, CSS and JS.
 
-Unlike many other online transposers, `chord-transposer` correctly handles *enharmonics* when transposing. A bit of music theory is required to understand what this means, so I have relegated this to the end of this document. First, we will talk about how the program logic works.
-
 
 ## The inner workings
 
@@ -19,7 +17,7 @@ The important files and folders are:
 I will focus mainly on the contents of the `/js/` folder. There are two main object types used:
 - `Note`, representing a musical note. The fields are:
   - a capital letter between A and G, along with
-  - an integer representing the number of sharps (positive) or flats (negative).
+  - an integer called the `sharpness`, representing the number of sharps (positive) or flats (negative).
 - `ChordString`, which consists of
   - A string `base` of ambient formatting data
   - A sequence of chords with associated locations in `base`
@@ -28,35 +26,40 @@ I have tried to ensure that `Note` and `ChordString` are immutable objects, so a
 
 When a sequence of chords/notes is entered by the user, that string is then passed to the ChordString parser (`ChordString.parse`). The parser essentially alternates between two states. In the first state, it looks for a capital letter from A to G. Once this is found, it goes to the second state, where it looks for `#` and `b` symbols directly after the letter. When the next character is not a `#` or `b`, it logs the corresponding note and goes back to the first state. All non-note characters are added to `base`.
 
+Essentially, we ignore anything that is not a capital letter between A and G followed by zero or more `#` or `b` symbols. As a result, we can correctly deal with:
+- modified chords (add2, m7, aug, etc)
+- slash chords (e.g. Fm/C)
+- punctuation symbols and formatting
+- titles, lyrics, and annotations, *as long as these are written in all lowercase* (capital letters might be interpreted as notes).
+
 The advantage of this split representation is that we can now easily transpose the ChordString, since we don't need to do anything with `base` - we just transpose each chords by the appropriate amount, using the `Note.transpose` method. Once we've done this, we can turn the ChordString back into a raw string, just by iterating through `base` and putting the chords in the appropriate place.
 
 The `Main.js` file is essentially a wrapper for the `ChordString.transpose` function. `Main.js` defines a single method `transpose(string, amount)` which takes in an input string, parses it to a `ChordString`, transposes it, and returns the resulting string. This is the interface which the webpage deals directly with.
 
-<p style="color: red">(It can deal with modified chords (e.g. m7, add2), slash chords, and formatting data such as titles, colons, dashes, brackets, etc. Note: you can write annotations such as "verse:", "chorus:", song titles and lyrics, but it is suggested you write these all in lowercase, so they are not confused for chords.)</p>
-
-
-<p style="color: red">(finding best enharmonic)
-One more nice feature is that it automatically finds the best enharmonic {...}
-For example, if we have a song in Am, and we want to transpose it down by one, we could put it in either G#m or Abm. Generally, G#m is going to be the better choice, as Abm would end up having many more accidentals. However, if the song was in A *major*, then again we could choose G# or Ab, and generally Ab would be the better choice.</p>
-
-<p style="color: red">In general, there is no foolproof way to tell. `chord-transposer` includes a method which can find enharmonics, e.g. change G#m to Abm. (find one with least totAcc)</p>
-
 
 ## Enharmonics
 
-A special feature of chord-transposer is that it respects the rules of music theory by choosing the correct enharmonic for a given note. I'll explain what that means for those unfamiliar with music theory.
+A special feature of `chord-transposer` is that it respects the rules of music theory by choosing the correct *enharmonic* for a given note.
 
-You may know that traditional Western music uses 12 notes. We have the "natural" notes A, B, C, D, E, F, G, which correspond to white keys on a piano. Between some of those, we have "altered" notes, corresponding to black keys on a piano. The altered notes are named in reference to the natural notes, by appending the symbols # (sharp, meaning directly above) and b (flat, meaning directly below). As each altered note falls between two natural notes, we have two possible ways to name it. For example, the note between C and D could be called either C# or Db. The whole setup looks kind of like this:
+Here's a quick explanation. Each note can be given multiple names: for example, C# and Db are two names for the note between C and D. These different names are *enharmonics* of each other. The rules of music theory determine which name we should use, in such a way that every note in a key uses a different letter. For example, we'd use Db in the key of F minor, and use C# in the key of A major.
 
-       Db     Eb        Gb     Ab     Bb
-    C      D      E  F      G      A      B  C
-       C#     D#        F#     G#     A#
+Most online chord transposers completely ignore this, simply representing the 12 notes as numbers 0-11 and transposing with modular arithmetic. While this approach is certainly much simpler, it is incorrect, and bound to annoy a trained musician. For example, if you go to [this tab](https://tabs.ultimate-guitar.com/tab/passenger/let-her-go-chords-1196760) on Ultimate Guitar (which is in Em) and transpose it up one (to Fm), you'll see C#'s which should be Db's instead.
 
-<p style="color: red">(talk about keys and scales)</p>
-<p style="color: red">A note name encodes not only the pitch, but also the *function* of a note within a key. For example, in the key of C major, D# (in B major chord) vs Eb (in C minor)</p>
+To take this extra enharmonic information into account, we need a different representation of a `Note` (i.e. not integers mod 12). This is why I chose to represent a `Note` as a letter followed by a number of flats and sharps. To preserve the correct enharmonic when transposing, *we always shift the letter by the same amount*, and change the number of sharps and flats to get the right pitch.
 
-<p style="color: red">Anyway, most transposers online completely ignore the above, and just map pitches to notes
-(...)
-This does significantly simplify the problem (....)
-</p>
+More concretely, to transpose by `n` semitones, we shift the letter by `Math.round(n * 7/12)` positions. Then, we look up the letter in an array called `SHARP_SHIFT`, which tells us how much to shift the sharpness by. This is how the `Note.transpose` method works.
 
+We *do* get a choice when choosing between the different enharmonics for the *key*. For example, a song in F#m could also be rendered in Gbm by moving every note to the next enharmonic. Generally, one of these choices is going to be better. For example the sequence
+
+    F#m D A E
+
+in F#m is much nicer than the equivalent
+
+    Gbm Ebb Bbb Fb
+
+in Gbm, which is a horrible mess of double flats.
+
+
+After transposing a chord sequence, `chord-transposer` automatically picks the best enharmonic for it. The "best" enharmonic is the one whose total sharpness is closest to zero, the *total sharpness* being the sum of `sharpness` over all notes in the sequence.
+
+Intuitively, we try to find the one with as few `#` and `b` symbols as possible. Continuing with the example above, the total sharpness of `F#m D A E` is +1, while for `Gbm Ebb Bbb Fb` it is -6. Therefore, `chord-transposer` would choose the former.
