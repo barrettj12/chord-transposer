@@ -7,12 +7,12 @@
 
 The important files and folders are:
 
-|             | |
--             |-
-`/index.html` | the main webpage
-`/css/`       | stylesheets for the main webpage
-`/js/`        | contains the program logic
-`/test/`      | Jest tests for the files in `/js/`
+| **File/folder** | **Description**                    |
+|-----------------|------------------------------------|
+| `/index.html`   | the main webpage                   |
+| `/css/`         | stylesheets for the main webpage   |
+| `/js/`          | contains the program logic         |
+| `/test/`        | Jest tests for the files in `/js/` |
 
 I will focus mainly on the contents of the `/js/` folder. There are two main object types used:
 - `Note`, representing a musical note. The fields are:
