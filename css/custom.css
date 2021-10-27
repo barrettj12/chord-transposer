@@ -9,40 +9,14 @@
 
 body {
   margin: 0px 30px 20px;
-  /* text-align: center;  Doesn't do shit */
 }
-
-/*main {
-  text-align: center;
-}*/
 
 h1 {
   margin-bottom: 20px;
   text-align: center;
-  /* font-family: 'Open Sans', monospace, Helvetica, sans-serif; */
-  /* font-size: 250%; */
-  /* font-weight: 300; */
 }
 
-/*#panel {
-  /~ display: flex; ~/
-  text-align: center;
-}*/
-
-/*@media screen and (min-width: 800px) {
-  #panel {
-    display: inline-flex;
-    justify-items: center;
-  }
-
-  textarea {
-    max-width: 500px;
-  }
-}*/
-
 .col {
-  /* display: inline-block; */
-  /* float: center; */
   text-align: center;
   margin-bottom: 20px;
 }
@@ -53,7 +27,6 @@ textarea {
   line-height: 120%;
   margin: auto auto 10px;
   min-height: 200px;
-  /* max-width: 50ch; */
 }
 
 button {
@@ -62,7 +35,10 @@ button {
   color: black;
   font-size: 12pt;
   font-weight: bold;
-  /* padding: 2px; */
+}
+
+button:hover {
+  background-color: #fafafa;
 }
 
 #plus, #minus {
@@ -76,68 +52,28 @@ button {
 
 #semitones {
   text-align: center;
-  width: 3.5ch;
+  width: 4.5ch;
 }
 
 #about, footer {
   margin: auto;
   max-width: 60ch;
-  /* text-align: center; */
 }
 
 p {
-  /* max-width: 60ch; */
   text-align: justify;
 }
 
-/*
-body {
-  margin: 0px 10px 10px;
+@media screen and (min-width: 750px) {
+  #panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 950px;
+    margin: auto;
+  }
+
+  textarea {
+    min-height: 300px;
+  }
 }
-
-#textarea-container {
-  text-align: center;
-}
-
-textarea {
-  font-family: monospace;
-  max-height: 400px;
-  min-height: 12ch;
-  max-width: 400px;
-  min-width: 36ch;
-  resize: none;
-}
-
-#controls {
-  text-align: center;
-  margin: 5px 0px 10px;
-}
-
-#controls span {
-  margin-left: 40px;
-}
-
-#semitone-button p {
-  display: inline;
-  margin: 10px;
-}
-
-#semitones { 
-  text-align: center;
-  width: 3.5ch;
-  padding: 1px;
-  /* margin: 0px; */
-/*}
-
-hr {
-  border: 0;
-  border-top: 1px solid lightgray;
-}
-
-p {
-  font-family: Garamond, serif;
-  font-size: 110%;
-  line-height: 120%;
-  margin: 7px 0px;
-  text-align: center;
-} */
