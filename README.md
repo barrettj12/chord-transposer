@@ -7,6 +7,6 @@ on the webpage.
 You can try it out <a href="https://barrettj12.github.io/chord-transposer/" target="_blank">here</a>.
 
 This software is open source, and [licensed](LICENSE.md) under the terms of the MIT License.
-It uses [normalize.css v8.0.1](https://github.com/necolas/normalize.css/).
+It uses the [BaseCSS](https://github.com/ianc1/BaseCSS) theme, with some customisations.
 
 Contributors: [@barrettj12](https://github.com/barrettj12/)
