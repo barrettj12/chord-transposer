@@ -1,6 +1,6 @@
 # An in-depth description of `chord-transposer`
 
-`chord-transposer` is a webpage which allows the user to transpose a given sequence of chords and/or notes into a different key. The actual logic is written entirely in JavaScript, while the webpage is (of course) written in HTML, CSS and JS.
+`chord-transposer` is a webpage which allows the user to transpose a given sequence of chords and/or notes into a different key. The actual logic is written entirely in JavaScript, while the webpage is (of course) written in HTML, CSS and JS. There is no persistent data, and hence all the code can be run client-side in the browser.
 
 
 ## The inner workings
